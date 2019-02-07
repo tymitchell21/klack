@@ -18,7 +18,6 @@ function appendMessage(msg) {
   }</strong><br>${msg.message}</div>`;
 }
 
-// redraw the entire list of users, indicating active/inactive
 function listUsers(users) {
   let userStrings = users.map(
     user =>
@@ -46,11 +45,10 @@ function fetchMessages() {
     .then(response => response.json())
     .then(data => {
       // if already scrolled to bottom, do so again after adding messages
-      const shouldScroll = scrolledToBottom();
-      var shouldDing = false;
+      const shouldScroll = scrolledToBottom()
+      var shouldDing = false
 
-      // redraw the user list
-      listUsers(data.users);
+      listUsers(data.users)
 
       // examine all received messages, add those newer than the last one shown
       for (let i = 0; i < data.messages.length; i++) {
@@ -60,11 +58,11 @@ function fetchMessages() {
           shouldDing = true;
         }
       }
-      if (shouldScroll && shouldDing) scrollMessages();
-      if (shouldDing) ding.play();
+      if (shouldScroll && shouldDing) scrollMessages()
+      if (shouldDing) ding.play()
 
       // poll again after waiting 5 seconds
-      setTimeout(fetchMessages, 5000);
+      setTimeout(fetchMessages, 5000)
     });
 }
 
@@ -82,16 +80,16 @@ document.getElementById("newmessage").addEventListener("keypress", event => {
     fetch("/messages", postRequestOptions)
       .then(response => response.json())
       .then(msg => {
-        appendMessage(msg);
-        scrollMessages();
+        appendMessage(msg)
+        scrollMessages()
 
         // reset the textarea
-        textarea.value = "";
-        textarea.disabled = false;
-        textarea.focus();
-      });
+        textarea.value = ""
+        textarea.disabled = false
+        textarea.focus()
+      })
   }
-});
+})
 
 // call on startup to populate the messages and start the polling loop
-fetchMessages();
+fetchMessages()
