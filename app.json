@@ -1,6 +1,0 @@
-{
-    "name": "Klack",
-    "description": "a simple version of slack",
-    "repository": "https://github.com/tymitchell21/klack.git",
-    "keywords": ["node", "express", "static"]
-}

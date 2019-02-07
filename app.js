@@ -69,6 +69,10 @@ function userSortFn(a, b) {
   return 0
 }
 
+app.get("/", (request, response) => {
+  response.send('hello')
+})
+
 app.get("/messages", (request, response) => {
   // get the current time
   const now = Date.now();
