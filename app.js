@@ -1,7 +1,7 @@
 const express = require("express")
 const querystring = require("querystring")
 const mongoose = require("mongoose")
-const port = 3000
+const port = process.env.PORT || 3000
 const app = express()
 
 mongoose.connect('mongodb://tymitchellw:wallflower21@ds221115.mlab.com:21115/klack', { useNewUrlParser: true })
@@ -30,7 +30,7 @@ db.once("open", () => {
         })
   
 
-  app.listen(3000, () => {
+  app.listen(port, () => {
     console.log('Server is running')
   })
 })
